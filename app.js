@@ -21,10 +21,10 @@ let currentUser, pendingPrice = 0, currentPrice = 0;
 
 // 登録
 window.register = async () => {
-  const name = name.value;
-  const nickname = nickname.value;
-  const email = email.value;
-  const password = password.value;
+  const name = document.getElementById("name").value;
+  const nickname = document.getElementById("nickname").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   const cred = await createUserWithEmailAndPassword(auth, email, password);
 
