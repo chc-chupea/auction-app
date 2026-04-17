@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #8b0000, #1a0000);
+  font-family: Arial Black, sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+.container {
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid #ff2a2a;
+  border-radius: 12px;
+  box-shadow: 0 0 20px red;
+}
+
+.price {
+  font-size: 60px;
+  text-shadow: 0 0 10px red;
+}
+
+.pending {
+  font-size: 28px;
+  color: #00eaff;
+}
+
+button {
+  padding: 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  width: 100%;
+  background: linear-gradient(#ff0000, #990000);
+  color: white;
+}

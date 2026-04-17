@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<h2>ログイン</h2>
+
+<input id="name" placeholder="名前"><br>
+<input id="nickname" placeholder="ニックネーム"><br>
+<input id="email" placeholder="メール"><br>
+<input id="password" type="password" placeholder="パスワード"><br>
+<p style="font-size:12px;color:#ccc;">
+※パスワードは6文字以上の半角英数字で設定してください
+</p>
+
+<button onclick="register()">登録</button>
+<button onclick="login()">ログイン</button>
+
+<p id="msg"></p>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
