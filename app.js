@@ -95,3 +95,10 @@ window.confirmBid = async () => {
 window.startAuction = () => updateDoc(doc(db,"auctions",auctionId),{status:"OPEN"});
 window.stopAuction = () => updateDoc(doc(db,"auctions",auctionId),{status:"CLOSED"});
 window.forceEnd = () => updateDoc(doc(db,"auctions",auctionId),{status:"FORCED"});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("registerBtn");
+  if (btn) {
+    btn.addEventListener("click", register);
+  }
+});
