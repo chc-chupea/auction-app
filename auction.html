@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <div class="container">
 
 <h2>現在価格</h2>
@@ -14,14 +15,16 @@
 <h3>あなたの入札額</h3>
 <div class="pending">¥<span id="pendingPrice">0</span></div>
 
-<button onclick="addBid(100)">+100</button>
-<button onclick="addBid(500)">+500</button>
+<button id="btn100">+100</button>
+<button id="btn500">+500</button>
 
-<button class="btn-confirm" onclick="confirmBid()">入札確定</button>
+<button id="confirmBtn" class="btn-confirm">入札確定</button>
 
 <p id="message"></p>
 
 </div>
+
 <script type="module" src="app.js"></script>
+
 </body>
 </html>

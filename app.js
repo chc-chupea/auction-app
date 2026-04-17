@@ -102,3 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", register);
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // 入札ボタン
+  const btn100 = document.getElementById("btn100");
+  const btn500 = document.getElementById("btn500");
+  const confirmBtn = document.getElementById("confirmBtn");
+
+  if (btn100) btn100.addEventListener("click", () => addBid(100));
+  if (btn500) btn500.addEventListener("click", () => addBid(500));
+  if (confirmBtn) confirmBtn.addEventListener("click", confirmBid);
+
+  // 表示用
+  window.currentPriceEl = document.getElementById("currentPrice");
+  window.pendingPriceEl = document.getElementById("pendingPrice");
+  window.topUser = document.getElementById("topUser");
+  window.message = document.getElementById("message");
+
+});
