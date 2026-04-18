@@ -9,7 +9,7 @@ import {
 import {
   getFirestore, doc, setDoc, getDoc,
   updateDoc, onSnapshot, runTransaction,
-  collection, addDoc, getDocs
+  collection, addDoc, getDocs, Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // 初期化
@@ -157,18 +157,29 @@ window.forceEnd = () => {
 };
 
 // =======================
-// 商品登録
+// 商品登録（時間付き）
 // =======================
+import { Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 const addItem = async () => {
   const name = document.getElementById("itemName").value;
+  const price = Number(document.getElementById("startPrice").value);
 
-  if (!name) return;
+  const startAt = new Date(document.getElementById("startAt").value);
+  const endAt = new Date(document.getElementById("endAt").value);
+
+  if (!name || !price || !startAt || !endAt) {
+    alert("全部入力してください");
+    return;
+  }
 
   await addDoc(collection(db, "auctions"), {
     name,
-    currentPrice: 0,
+    currentPrice: price,
     currentBidderNickname: "",
-    status: "OPEN"
+    status: "WAITING",
+    startAt: Timestamp.fromDate(startAt),
+    endAt: Timestamp.fromDate(endAt)
   });
 
   alert("商品登録完了");
