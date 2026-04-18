@@ -159,7 +159,6 @@ window.forceEnd = () => {
 // =======================
 // 商品登録（時間付き）
 // =======================
-import { Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const addItem = async () => {
   const name = document.getElementById("itemName").value;
