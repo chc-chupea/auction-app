@@ -83,6 +83,10 @@ onAuthStateChanged(auth, async (user) => {
     const d = s.data();
     currentPrice = d.currentPrice || 0;
 
+  // ▼ここに追加
+    const nameEl = document.getElementById("itemNameDisplay");
+    if (nameEl) nameEl.innerText = d.name || "";
+
     const currentPriceEl = document.getElementById("currentPrice");
     const topUserEl = document.getElementById("topUser");
     const pendingPriceEl = document.getElementById("pendingPrice");
@@ -186,9 +190,10 @@ const loadItems = async () => {
     const li = document.createElement("li");
     li.innerText = d.data().name;
 
+
     li.onclick = () => {
       localStorage.setItem("auctionId", d.id);
-      alert("選択：" + d.data().name);
+      location.href = "auction.html"; // ←追加
     };
 
     list.appendChild(li);
