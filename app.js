@@ -8,7 +8,8 @@ import {
 
 import {
   getFirestore, doc, setDoc, getDoc,
-  updateDoc, onSnapshot, runTransaction
+  updateDoc, onSnapshot, runTransaction,
+  collection, addDoc, getDocs
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // 初期化
@@ -16,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-const auctionId = "main";
+const auctionId = localStorage.getItem("auctionId") || "main";
 
 let currentUser = null;
 let pendingPrice = 0;
@@ -152,9 +153,60 @@ window.forceEnd = () => {
 };
 
 // =======================
+// 商品登録
+// =======================
+const addItem = async () => {
+  const name = document.getElementById("itemName").value;
+
+  if (!name) return;
+
+  await addDoc(collection(db, "auctions"), {
+    name,
+    currentPrice: 0,
+    currentBidderNickname: "",
+    status: "OPEN"
+  });
+
+  alert("商品登録完了");
+  loadItems();
+};
+
+// =======================
+// 商品一覧
+// =======================
+const loadItems = async () => {
+  const list = document.getElementById("itemList");
+  if (!list) return;
+
+  const snap = await getDocs(collection(db, "auctions"));
+
+  list.innerHTML = "";
+
+  snap.forEach(d => {
+    const li = document.createElement("li");
+    li.innerText = d.data().name;
+
+    li.onclick = () => {
+      localStorage.setItem("auctionId", d.id);
+      alert("選択：" + d.data().name);
+    };
+
+    list.appendChild(li);
+  });
+};
+
+
+// =======================
 // ボタン紐付け（超重要）
 // =======================
 document.addEventListener("DOMContentLoaded", () => {
+
+  // 商品登録ボタン
+  const addBtn = document.getElementById("addItemBtn");
+  if (addBtn) addBtn.addEventListener("click", addItem);
+
+  // 商品一覧読み込み
+  loadItems();
 
   // 登録ボタン
   const regBtn = document.getElementById("registerBtn");
